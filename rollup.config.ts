@@ -15,7 +15,7 @@ const external = [...Object.keys(pkg.dependencies || {})];
 /**
  * Include all of the dependencies again here to squash rollup warnings
  */
-const globals = {};
+const globals = { axios: 'axios', 'isomorphic-ws': 'isomorphic-ws' };
 
 export default {
   input: `src/index.ts`,

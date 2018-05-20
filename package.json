@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/eth-exists.umd.js",
   "module": "dist/eth-exists.es6.js",
-  "typings": "src/index",
+  "typings": "dist/index.d.ts",
   "scripts": {
     "test": "jest",
     "test:mem": "npm test -- --coverage --silent --logHeapUsage",
@@ -46,6 +46,7 @@
   "devDependencies": {
     "@types/jest": "^22.2.0",
     "@types/node": "^9.4.6",
+    "@types/ws": "^5.1.1",
     "coveralls": "^3.0.1",
     "husky": "^0.14.3",
     "jest": "^22.4.2",
@@ -79,5 +80,10 @@
       "/node_modules/",
       "__test__"
     ]
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "isomorphic-ws": "^4.0.1",
+    "toml": "^2.3.3"
   }
 }

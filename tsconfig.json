@@ -21,6 +21,7 @@
     "noFallthroughCasesInSwitch": true,
     "noImplicitThis": true,
     "noErrorTruncation": true,
+    "noEmit": true,
     "pretty": true
   },
   "include": ["./src/", "./__test__/", "examples"]
