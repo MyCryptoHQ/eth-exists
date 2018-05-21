@@ -1,4 +1,4 @@
-import axios, { AxiosPromise } from 'axios';
+import axios from 'axios';
 import WebSocket from 'isomorphic-ws';
 
 export interface IHttpConfig {
@@ -8,18 +8,25 @@ export interface IHttpConfig {
   timeout: number;
 }
 
-export function makeHttpRequest(config: IHttpConfig): AxiosPromise<any> {
-  return axios.post(
-    `${config.addr}:${config.port}`,
-    '{"jsonrpc":"2.0","method":"net_version","params":[],"id":67}',
-    {
-      headers: {
-        'Content-Type': 'application/json;charset=UTF-8',
-        'Access-Control-Allow-Origin': '*',
+export function makeHttpRequest(config: IHttpConfig) {
+  return axios
+    .post(
+      `${config.addr}:${config.port}`,
+      '{"jsonrpc":"2.0","method":"net_version","params":[],"id":67}',
+      {
+        headers: {
+          'Content-Type': 'application/json;charset=UTF-8',
+          'Access-Control-Allow-Origin': '*',
+        },
+        timeout: config.timeout,
       },
-      timeout: config.timeout,
-    },
-  );
+    )
+    .then(r => {
+      if (r.status !== 200) {
+        throw Error('Request failed');
+      }
+      return r;
+    });
 }
 
 export interface IWSConfig {
@@ -30,15 +37,24 @@ export interface IWSConfig {
 }
 
 export function makeWsRequest(config: IWSConfig) {
-  const socket = new WebSocket(`${config.addr}:${config.port}`, {
+  const url = `${config.addr}:${config.port}`;
+  console.log(url);
+  const socket = new WebSocket(url, {
     handshakeTimeout: config.timeout,
   });
   return new Promise((resolve, reject) => {
+    let timeout: NodeJS.Timer;
     socket.onopen = () => {
+      clearTimeout(timeout);
       resolve('worked');
     };
 
-    setTimeout(() => {
+    socket.onerror = e => {
+      clearTimeout(timeout);
+      reject(e);
+    };
+
+    timeout = setTimeout(() => {
       reject(Error('timeout'));
     }, config.timeout);
   });
