@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import WebSocket from 'isomorphic-ws';
 
 export interface IHttpConfig {
@@ -8,7 +8,9 @@ export interface IHttpConfig {
   timeout: number;
 }
 
-export function makeHttpRequest(config: IHttpConfig) {
+export function makeHttpRequest(
+  config: IHttpConfig,
+): Promise<AxiosResponse<any>> {
   return axios
     .post(
       `${config.addr}:${config.port}`,
