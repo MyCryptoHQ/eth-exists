@@ -1,5 +1,4 @@
-import { makeHttpRequest, makeWsRequest } from '@src/utils/make-request';
-import { Server } from 'mock-socket';
+import { makeHttpRequest } from '@src/utils/make-request';
 import moxios from 'moxios';
 
 describe('makeHttpRequest tests', () => {
@@ -27,7 +26,7 @@ describe('makeHttpRequest tests', () => {
       port: 100000,
       timeout: 5000,
       type: 'http',
-    }).catch(e => {
+    }).catch(_ => {
       done();
     });
     moxios.wait(() => {
