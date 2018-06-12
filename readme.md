@@ -7,7 +7,7 @@ are online.
 ## Usage
 
 ```ts
-import { exists } from 'eth-exists';
+import { exists } from 'mycrypto-eth-exists';
 
 // a provider to see if they're online or not by sending a
 // getNetVersion JSON-RPC request to them and checking for a response

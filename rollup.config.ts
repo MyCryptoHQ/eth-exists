@@ -3,7 +3,7 @@ import typescript from 'rollup-plugin-typescript2';
 
 const pkg = require('./package.json');
 
-const libraryName = 'eth-exists';
+const libraryName = 'mycrypto-eth-exists';
 
 /**
  * Include all of the dependencies here to exclude all node modules from the build

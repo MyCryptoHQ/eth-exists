@@ -1,9 +1,9 @@
 {
-  "name": "eth-exists",
-  "version": "0.0.3",
+  "name": "mycrypto-eth-exists",
+  "version": "1.0.0",
   "description": "",
-  "main": "dist/eth-exists.umd.js",
-  "module": "dist/eth-exists.es6.js",
+  "main": "dist/mycrypto-eth-exists.umd.js",
+  "module": "dist/mycrypto-eth-exists.es6.js",
   "typings": "dist/index.d.ts",
   "scripts": {
     "test": "jest",
